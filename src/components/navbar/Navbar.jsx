@@ -32,15 +32,16 @@ const Navbar = () => {
     { id: "about", label: "About" },
     { id: "skills", label: "Skills" },
     { id: "experience", label: "Experience" },
+    { id: "education", label: "Education" },
     { id: "projects", label: "Projects" },
     { id: "contact", label: "Contact" },
   ];
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition duration-300 px-[7vw] md:px-[7vw] lg:px-[20vw] ${
+      className={`fixed top-0 w-full z-50 transition duration-300 px-[5vw] lg:px-[10vw] ${
         isScrolled
-          ? "bg-[#050414] bg-opacity-50 backdrop-blur-md shadow-md"
-          : "bg-[#050414]"
+          ? "bg-[#0a0a0a] bg-opacity-50 backdrop-blur-md shadow-md"
+          : "bg-[#0a0a0a]"
       }`}
     >
       <div className="text-white py-5 flex justify-between items-center">
@@ -125,7 +126,7 @@ const Navbar = () => {
         </div>
       </div>
       {isOpen && (
-        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-4/5 bg-[#050414] bg-opacity-50 backdrop-filter backdrop-blur-lg z-50 rounded-lg shadow-lg md:hidden">
+        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-4/5 bg-[#0a0a0a] bg-opacity-50 backdrop-filter backdrop-blur-lg z-50 rounded-lg shadow-lg md:hidden">
           <ul className="flex flex-col items-center space-y-4 py-4 text-gray-300">
             {menuItems.map((item) => (
               <li

@@ -2,10 +2,12 @@ import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 const Contact = () => {
   const form = useRef();
-  const [isSent, setIsSent] = useState(false); // for emall sent status
+  const [isSent, setIsSent] = useState(false); // for email sent status
   const [sending, setSending] = useState(false);
+
   const sendEmail = (e) => {
     e.preventDefault();
     setSending(true);
@@ -14,7 +16,7 @@ const Contact = () => {
         "service_3v0ibjp", // email service ID
         "template_c98fw83", // email template ID
         form.current, // form reference
-        "GCdxPF7E3CvSKGych" // public key
+        "GCdxPF7E3CvSKGych", // public key
       )
       .then(
         () => {
@@ -47,77 +49,87 @@ const Contact = () => {
             progress: undefined,
             theme: "dark",
           });
-        }
+        },
       );
   };
 
   return (
-    <section id="contact" className="py-24 px-4 relative ">
-      <div className=" mx-auto max-w-5xl">
-        <h2 className="text-3xl text-white md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-[#8245ec]"> Touch</span>
-          <div className="w-55 h-1 bg-purple-500 mx-auto mt-4"></div>
-        </h2>
-        <p className="text-center sm:text-lg md:text-lg text-gray-400 leading-relaxed mt-4 font-semibold mb-12 max-w-2xl mx-auto">
-          I’d love to hear from you—reach out for any opportunities or
-          questions!
-        </p>
-      </div>
-      <ToastContainer />
+    <section
+      id="contact"
+      className="py-20 px-[5vw] lg:px-[10vw] font-sans bg-[#0a0a0a] text-white"
+    >
+      <div className="container mx-auto max-w-7xl">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">
+            Get In{" "}
+            <span className="bg-gradient-to-r from-[#8245ec] to-[#ff6b6b] bg-clip-text text-transparent">
+              Touch
+            </span>
+          </h2>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-[#8245ec] to-[#ff6b6b] mx-auto rounded-full mb-8"></div>
+          <p className="max-w-2xl mx-auto text-gray-400 text-lg leading-relaxed">
+            I’d love to hear from you—reach out for any opportunities or
+            questions!
+          </p>
+        </div>
 
-      {/* Contact Form */}
-      <div className="mt-8 w-full max-w-md bg-[#0d081f] p-6 rounded-lg shadow-lg border border-gray-700 items-center justify-center text-center mx-auto">
-        <h3 className="text-xl font-semibold text-white text-center">
-          Connect With Me <span className="ml-1">🚀</span>
-        </h3>
+        <ToastContainer />
 
-        <form
-          ref={form}
-          onSubmit={sendEmail}
-          className="mt-4 flex flex-col space-y-4"
-        >
-          <input
-            type="email"
-            name="user_email"
-            placeholder="Your Email"
-            required
-            className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500"
-          />
-          <input
-            type="text"
-            name="user_name"
-            placeholder="Your Name"
-            required
-            className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500"
-          />
-          <input
-            type="text"
-            name="subject"
-            placeholder="Subject"
-            required
-            className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500"
-          />
-          <textarea
-            name="message"
-            placeholder="Message"
-            rows="4"
-            required
-            className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500"
-          />
+        {/* Contact Form */}
+        <div className="mt-8 w-full max-w-md bg-[#161625] p-6 rounded-2xl shadow-2xl border border-gray-800 items-center justify-center text-center mx-auto">
+          <h3 className="text-xl font-semibold text-white text-center mb-4">
+            Connect With Me <span className="ml-1">🚀</span>
+          </h3>
 
-          {/* Send Button */}
-          <button
-            disabled={sending || isSent}
-            type="submit"
-            className={`w-full py-3 font-semibold rounded-md transition text-white ${
-              sending || isSent
-                ? "bg-gray-600 cursor-not-allowed"
-                : "bg-gradient-to-r from-purple-600 to-pink-500 hover:opacity-90"
-            }`}
+          <form
+            ref={form}
+            onSubmit={sendEmail}
+            className="flex flex-col space-y-4"
           >
-            {sending ? "Sending..." : isSent ? "Sent!" : "Send"}
-          </button>
-        </form>
+            <input
+              type="email"
+              name="user_email"
+              placeholder="Your Email"
+              required
+              className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500"
+            />
+            <input
+              type="text"
+              name="user_name"
+              placeholder="Your Name"
+              required
+              className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500"
+            />
+            <input
+              type="text"
+              name="subject"
+              placeholder="Subject"
+              required
+              className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500"
+            />
+            <textarea
+              name="message"
+              placeholder="Message"
+              rows="4"
+              required
+              className="w-full p-3 rounded-md bg-[#131025] text-white border border-gray-600 focus:outline-none focus:border-purple-500"
+            />
+
+            {/* Send Button */}
+            <button
+              disabled={sending || isSent}
+              type="submit"
+              className={`w-full py-3 font-semibold rounded-md transition text-white ${
+                sending || isSent
+                  ? "bg-gray-600 cursor-not-allowed"
+                  : "bg-gradient-to-r from-purple-600 to-pink-500 hover:opacity-90"
+              }`}
+            >
+              {sending ? "Sending..." : isSent ? "Sent!" : "Send"}
+            </button>
+          </form>
+        </div>
       </div>
     </section>
   );
