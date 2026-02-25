@@ -38,7 +38,10 @@ const projects = [
 ];
 export const Projects = () => {
   return (
-    <section id="projects" className="py-24 px-4 relative">
+    <section
+      id="projects"
+      className="py-4 px-[7vw] md:px-[7vw] lg:px-[20vw] font-sans mt-16 md:mt-24 lg:mt-32"
+    >
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white text-center">
           {" "}
@@ -50,7 +53,7 @@ export const Projects = () => {
           crafted with attention to detail, performance, and user experience.
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {projects.map((project, key) => (
             <div
               key={key}

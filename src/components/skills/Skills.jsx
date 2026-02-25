@@ -7,8 +7,12 @@ const skills = [
   { name: "Tailwind CSS", level: 95, category: "frontend" },
 
   // Backend
-  { name: "Node.js", level: 50, category: "backend" },
-  { name: "Express", level: 20, category: "backend" },
+  { name: "Node.js", level: 95, category: "backend" },
+  { name: "Express", level: 90, category: "backend" },
+  //Database
+  { name: "MySQL", level: 90, category: "database" },
+  { name: "Mongodb", level: 95, category: "database" },
+  { name: "Oracle", level: 90, category: "database" },
 
   // Tools
   { name: "Git/GitHub", level: 90, category: "tools" },
@@ -17,9 +21,10 @@ const skills = [
   { name: "Appwrite", level: 90, category: "tools" },
   { name: "Netlify", level: 90, category: "tools" },
   { name: "Vercel", level: 90, category: "tools" },
+  { name: "Prettier", level: 95, category: "tools" },
 ];
 
-const categories = ["all", "frontend", "backend", "tools"];
+const categories = ["all", "frontend", "backend", "database", "tools"];
 
 const Skills = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -28,7 +33,10 @@ const Skills = () => {
     (skill) => activeCategory === "all" || skill.category === activeCategory
   );
   return (
-    <section id="skills" className="py-9 px-4 mt-7 bg-[#050414] text-white">
+    <section
+      id="skills"
+      className="py-4 px-[7vw] md:px-[7vw] lg:px-[20vw] font-sans mt-16 md:mt-24 lg:mt-32 text-white"
+    >
       <div className="container mx-auto max-w-5xl">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
           My <span className="text-[#8245ec]">Skills</span>
@@ -36,7 +44,7 @@ const Skills = () => {
         </h2>
 
         {/* Categories */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-10">
           {categories.map((currCat, key) => (
             <button
               key={key}
@@ -53,18 +61,18 @@ const Skills = () => {
         </div>
 
         {/* Skill Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredSkills.map((skill, key) => (
             <div
               key={key}
-              className="bg-[#0a0a1a] p-6 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] hover:bg-[#111122] hover:border hover:border-[#4444ff] "
+              className="bg-[#0a0a1a] p-5 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] hover:bg-[#111122] hover:border hover:border-[#4444ff] "
             >
               <div className="mb-4">
                 <h3 className="font-semibold text-lg">{skill.name}</h3>
               </div>
-              <div className="w-full bg-white/10 h-2 rounded-full overflow-hidden">
+              <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden">
                 <div
-                  className="bg-[#8245ec] h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
+                  className="bg-[#8245ec] h-1.5 rounded-full origin-left animate-[grow_1.5s_ease-out]"
                   style={{ width: `${skill.level}%` }}
                 ></div>
               </div>
