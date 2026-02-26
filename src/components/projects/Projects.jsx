@@ -1,5 +1,5 @@
 import React from "react";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, ArrowRight } from "lucide-react";
 import Tilt from "react-parallax-tilt";
 import Project1 from "../../assets/project-1.png";
 import Project2 from "../../assets/project-2.png";
@@ -64,6 +64,15 @@ const projects = [
 ];
 
 export const Projects = () => {
+  const [tiltEnabled, setTiltEnabled] = React.useState(true);
+
+  React.useEffect(() => {
+    const check = () => setTiltEnabled(window.innerWidth >= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <section
       id="projects"
@@ -90,6 +99,7 @@ export const Projects = () => {
           {projects.map((project) => (
             <Tilt
               key={project.id}
+              tiltEnable={tiltEnabled}
               tiltMaxAngleX={12}
               tiltMaxAngleY={12}
               perspective={1000}
@@ -99,7 +109,7 @@ export const Projects = () => {
             >
               <div className="h-full bg-[#161625] border border-gray-800 rounded-2xl overflow-hidden flex flex-col group hover:border-[#8245ec]/50 transition-all duration-300 shadow-2xl">
                 {/* Image Container */}
-                <div className="relative h-56 overflow-hidden bg-gray-900">
+                <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden bg-gray-900">
                   <img
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     src={project.image}
@@ -169,6 +179,27 @@ export const Projects = () => {
             </Tilt>
           ))}
         </div>
+      </div>
+      <div className="flex justify-center items-center my-12 ">
+        <a
+          href="https://github.com/Pranav-7262"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative inline-flex items-center gap-3 px-8 py-4 bg-[#161625] border border-gray-800 rounded-full text-lg font-bold text-white transition-all duration-300 hover:border-[#8245ec] hover:shadow-[0_0_30px_rgba(130,69,236,0.3)] overflow-hidden"
+        >
+          {/* Shimmer Effect */}
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+
+          <Github
+            className="group-hover:rotate-12 transition-transform duration-300"
+            size={24}
+          />
+          <span>Check out GitHub for more projects</span>
+          <ArrowRight
+            className="group-hover:translate-x-1 transition-transform duration-300"
+            size={20}
+          />
+        </a>
       </div>
     </section>
   );

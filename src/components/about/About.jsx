@@ -1,13 +1,23 @@
 import React from "react";
 import Tilt from "react-parallax-tilt";
 import { TypeAnimation } from "react-type-animation";
+import { Download } from "lucide-react"; // Added for a better icon
 import Profile from "../../assets/myPhoto.jpeg";
 
 const About = () => {
+  const [tiltEnabled, setTiltEnabled] = React.useState(true);
+
+  React.useEffect(() => {
+    const check = () => setTiltEnabled(window.innerWidth >= 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   return (
     <section
       id="about"
-      className="py-20 px-[5vw] lg:px-[10vw] font-sans bg-[#0a0a0a] text-white"
+      className="py-20 px-[5vw] lg:px-[10vw] font-sans bg-[#0a0a0a] text-white overflow-hidden"
     >
       <div className="container mx-auto max-w-7xl">
         {/* Section Header */}
@@ -21,26 +31,27 @@ const About = () => {
           <div className="w-24 h-1.5 bg-gradient-to-r from-[#8245ec] to-[#ff6b6b] mx-auto rounded-full mb-8"></div>
         </div>
 
-        <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-12">
-          {/* Left Side */}
-          <div className="md:w-1/2 text-center md:text-left">
-            {/* Greeting */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-2 leading-tight">
+        <div className="flex flex-col-reverse md:flex-row justify-between items-center gap-12 lg:gap-20">
+          {/* Left Side: Content */}
+          <div className="md:w-3/5 text-center md:text-left">
+            <h1 className="text-2xl sm:text-3xl font-medium text-gray-400 mb-2">
               Hi, I am
             </h1>
-            {/* Name */}
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 leading-tight">
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-black mb-4 leading-tight tracking-tighter">
               Pranav Varpe
             </h2>
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-4 leading-tight">
+
+            <div className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 h-12">
               <span className="text-white">I am a </span>
               <TypeAnimation
                 sequence={[
                   "MERN Stack Developer",
                   2000,
-                  "Backend Developer",
+                  "Backend Specialist",
                   2000,
-                  "Node.js Developer",
+                  "Third-Year CSE Student",
+                  2000,
+                  "Open Source Contributor",
                   2000,
                   "Problem Solver",
                   2000,
@@ -50,40 +61,65 @@ const About = () => {
                 className="text-[#8245ec]"
                 wrapper="span"
               />
-            </h3>
-            <p className="text-base sm:text-lg md:text-lg text-gray-400 mb-10 leading-relaxed">
-              I am a full-stack developer with over 2 years of experience in
-              building scalable web applications. Skilled in both front-end and
-              back-end development, I specialize in the MERN stack and other
-              modern technologies to create seamless user experiences and
-              efficient solutions.
-            </p>
+            </div>
+
+            <div className="relative group">
+              {/* Glassmorphism card for bio */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#8245ec] to-[#ff6b6b] rounded-2xl blur opacity-10 group-hover:opacity-20 transition duration-1000"></div>
+              <div className="relative bg-[#161625]/50 border border-gray-800 p-6 rounded-2xl backdrop-blur-sm mb-10">
+                <p className="text-base sm:text-lg text-gray-400 leading-relaxed">
+                  I am a passionate{" "}
+                  <span className="text-white font-semibold">
+                    Computer Science student
+                  </span>{" "}
+                  currently in my third year, specializing in the{" "}
+                  <span className="text-white font-semibold">MERN stack</span>.
+                  With a track record of solving{" "}
+                  <span className="text-[#a374f0] font-bold">
+                    1000+ problems
+                  </span>{" "}
+                  on LeetCode and GFG, I enjoy building high-performance backend
+                  systems and interactive user experiences. I thrive on turning
+                  complex logic into elegant, scalable code.
+                </p>
+              </div>
+            </div>
+
+            {/* Enhanced Download CV Button */}
             <a
-              className="inline-block text-white py-3 px-8 rounded-full text-lg font-bold transition duration-300 transform hover:scale-105 cursor-pointer"
-              style={{
-                background: "linear-gradient(90deg, #8245ec, #a855f7)",
-                boxShadow: "0 0 2px #8245ec, 0 0 2px #8245ec, 0 0 40px #8245ec",
-              }}
+              href="/Pranav-Varpe-Resume.pdf"
+              download="Pranav-Varpe-Resume.pdf"
+              className="group relative inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-[#8245ec] to-[#a855f7] rounded-full text-lg font-bold text-white transition-all duration-300 hover:shadow-[0_0_40px_rgba(130,69,236,0.6)] active:scale-95"
             >
-              DOWNLOAD CV
+              <Download size={22} className="group-hover:animate-bounce" />
+              <span>DOWNLOAD CV</span>
             </a>
           </div>
-          <div className="md:w-1/2 flex justify-center md:justify-end">
-            <Tilt
-              className="w-48 h-48 sm:w-64 sm:h-64 md:w-[30rem] md:h-[30rem] border-4 border-purple-700 rounded-full"
-              tiltMaxAngleX={20}
-              tiltMaxAngleY={20}
-              perspective={1000}
-              scale={1.05}
-              transitionSpeed={1000}
-              gyroscope={true}
-            >
-              <img
-                src={Profile}
-                alt="Pranav Varpe"
-                className="w-full h-full rounded-full object-cover drop-shadow-[0_10px_20px_rgba(130,69,236,0.5)]"
-              />
-            </Tilt>
+
+          {/* Right Side: Profile Image */}
+          <div className="md:w-2/5 flex justify-center md:justify-end">
+            <div className="relative">
+              {/* Rotating background border effect */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-[#8245ec] via-transparent to-[#ff6b6b] rounded-full animate-spin-slow opacity-30"></div>
+
+              <Tilt
+                className="w-56 h-56 sm:w-72 sm:h-72 lg:w-[28rem] lg:h-[28rem] z-10"
+                tiltEnable={tiltEnabled}
+                tiltMaxAngleX={15}
+                tiltMaxAngleY={15}
+                perspective={1200}
+                scale={1.05}
+                transitionSpeed={2000}
+              >
+                <div className="w-full h-full rounded-full border-[6px] border-[#161625] overflow-hidden shadow-[0_0_50px_rgba(130,69,236,0.3)]">
+                  <img
+                    src={Profile}
+                    alt="Pranav Varpe"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </Tilt>
+            </div>
           </div>
         </div>
       </div>
