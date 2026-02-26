@@ -4,7 +4,7 @@ import { Briefcase, Calendar, MapPin, CheckCircle2 } from "lucide-react";
 const Experiences = () => {
   const experiences = [
     {
-      id: 1,
+      id: "experience",
       company: "Tecspeak IT Solutions",
       location: "Sangli, India",
       position: "Full stack Development Intern",
