@@ -2,7 +2,7 @@ import React from "react";
 import Tilt from "react-parallax-tilt";
 import { TypeAnimation } from "react-type-animation";
 import { Download } from "lucide-react";
-import Profile from "../../assets/myPhoto.jpeg";
+import Profile from "../../assets/photoPortfolio.jpg";
 
 const About = () => {
   const [tiltEnabled, setTiltEnabled] = React.useState(true);
